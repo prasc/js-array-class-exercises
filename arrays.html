@@ -54,9 +54,38 @@
       //  "missCongenialities": [ { ... }],
       // }
 
-      winnersAndMiss = function(queensArray) {
-        console.log(queensArray);
-      };
+      // function getWinnersAndFanFavourites(queens) {
+      //   return queens.reduce((acc, queen) => {
+      //     if (queen.winner) {
+      //       acc.winners = acc.winners.concat(queen),
+      //     }
+      //   }, {
+      //     winners: [],
+      //     fanFavourites: [],
+      //   })
+      // }
+
+      function getWinnersAndFanFavourites(queens) {
+        return queens.reduce(
+          (acc, queen) => {
+            if (queen.winner) {
+              const newWinners = acc.winners;
+              newWinners.push(queen);
+              acc.winners = newWinners;
+            }
+
+            if (queen.missCongeniality) {
+              acc.fanFavourites = acc.fanFavourites.concat(queen);
+            }
+
+            return acc;
+          },
+          {
+            winners: [],
+            fanFavourites: []
+          }
+        );
+      }
     </script>
   </body>
 </html>
